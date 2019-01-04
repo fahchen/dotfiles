@@ -244,8 +244,15 @@ nnoremap <C-]> g<C-]>
 nnoremap g[ :pop<cr>
 
 " <leader>n | NERD Tree
+function! OpenNERDTreeAndFind()
+  if &modifiable && strlen(expand('%')) > 0 && !&diff
+    NERDTreeFind
+  else
+    NERDTreeToggle
+  endif
+endfunction
 map <Leader>n :NERDTreeToggle<cr>
-map <Leader>p :NERDTreeFind<cr>
+map <Leader>p :call OpenNERDTreeAndFind()<CR>
 
 " jk | Escaping!
 inoremap jk <Esc>
