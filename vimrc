@@ -142,6 +142,11 @@ set nocursorline
 set nrformats=hex
 set encoding=UTF-8
 set relativenumber
+set nowrap       "Don't wrap lines
+set linebreak    "Wrap lines at convenient points
+
+" Display tabs and trailing spaces visually
+set list listchars=tab:\ \ ,trail:·
 
 silent! set cryptmethod=blowfish2
 
