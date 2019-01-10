@@ -1000,7 +1000,7 @@ let NERDTreeNodeDelimiter = "\u00a0"
 let NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
 let NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
 let NERDTreeLimitedSyntax = 1
-let NERDTreeIgnore = ['_build', 'deps', 'node_modules', '\~$']
+let NERDTreeIgnore = ['_build$', 'deps', 'node_modules', '\~$']
 let NERDTreeQuitOnOpen = 1
 
 
