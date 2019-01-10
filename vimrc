@@ -213,8 +213,8 @@ endif
 " Basic mappings
 " ----------------------------------------------------------------------------
 
-noremap <C-F> <C-D>
-noremap <C-B> <C-U>
+" noremap <C-F> <C-D>
+" noremap <C-B> <C-U>
 
 " Open new line below and above current line
 nnoremap <leader>o o<esc>
