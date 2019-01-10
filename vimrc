@@ -996,7 +996,6 @@ runtime macros/matchit.vim
 " ----------------------------------------------------------------------------
 " NERDTree
 " ----------------------------------------------------------------------------
-let NERDTreeMinimalUI = 1
 let NERDTreeNodeDelimiter = "\u00a0"
 let NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
 let NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
