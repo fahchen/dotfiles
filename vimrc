@@ -252,7 +252,7 @@ function! OpenNERDTreeAndFind()
   endif
 endfunction
 map <Leader>n :NERDTreeToggle<cr>
-map <Leader>p :call OpenNERDTreeAndFind()<CR>
+map <Leader>p :call OpenNERDTreeAndFind()<cr>
 
 " jk | Escaping!
 inoremap jk <Esc>
