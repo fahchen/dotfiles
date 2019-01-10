@@ -251,7 +251,7 @@ function! OpenNERDTreeAndFind()
     NERDTreeToggle
   endif
 endfunction
-map <Leader>n :NERDTreeToggle<cr>
+map <c-n> :NERDTreeToggle<cr>
 map <Leader>p :call OpenNERDTreeAndFind()<cr>
 
 " jk | Escaping!
@@ -1001,7 +1001,6 @@ let NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact 
 let NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
 let NERDTreeLimitedSyntax = 1
 let NERDTreeIgnore = ['_build$', 'deps', 'node_modules', '\~$']
-let NERDTreeQuitOnOpen = 1
 
 
 " ----------------------------------------------------------------------------
