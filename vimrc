@@ -945,6 +945,11 @@ let g:plug_window = '-tabnew'
 let g:plug_pwindow = 'vertical rightbelow new'
 
 " ----------------------------------------------------------------------------
+" vue-vim
+" ----------------------------------------------------------------------------
+let g:vue_disable_pre_processors=1
+
+" ----------------------------------------------------------------------------
 " MatchParen delay
 " ----------------------------------------------------------------------------
 let g:matchparen_insert_timeout=5
@@ -1161,9 +1166,6 @@ augroup vimrc
   au BufWritePost vimrc,.vimrc nested if expand('%') !~ 'fugitive' | source % | endif
 
   " File types
-  au BufNewFile,BufRead *.icc               set filetype=cpp
-  au BufNewFile,BufRead *.pde               set filetype=java
-  au BufNewFile,BufRead *.coffee-processing set filetype=coffee
   au BufNewFile,BufRead Dockerfile*         set filetype=dockerfile
 
   " Included syntax
