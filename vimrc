@@ -73,16 +73,16 @@ endif
 
 " Lang
 Plug 'tpope/vim-bundler', { 'for': 'ruby' }
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'kchmck/vim-coffee-script'
-Plug 'slim-template/vim-slim'
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
+Plug 'slim-template/vim-slim', { 'for': 'slim' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'honza/dockerfile.vim', { 'for': 'dockerfile' }
 Plug 'dag/vim-fish'
 Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
 Plug 'posva/vim-vue', { 'for': 'vue' }
+Plug 'jparise/vim-graphql', { 'for': 'graphql' }
 
 
 " Lint
@@ -1061,7 +1061,7 @@ command! -range EmojiReplace <line1>,<line2>s/:\([^:]\+\):/\=emoji#for(submatch(
 " ----------------------------------------------------------------------------
 " ALE
 " ----------------------------------------------------------------------------
-let g:ale_linters = {'java': [], 'yaml': [], 'scala': [], 'clojure': []}
+let g:ale_linters = {'java': [], 'yaml': [], 'scala': [], 'clojure': [], 'graphql': ['gqlint']}
 let g:ale_fixers = {'ruby': ['rubocop']}
 let g:ale_lint_delay = 1000
 let g:ale_sign_warning = '──'
