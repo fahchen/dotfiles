@@ -233,7 +233,7 @@ if $TERM =~ 'screen'
 endif
 
 " Quit
-inoremap <C-Q>     <esc>:q<cr>
+inoremap <C-Q>     <esc>
 nnoremap <C-Q>     :q<cr>
 vnoremap <C-Q>     <esc>
 nnoremap <Leader>q :q<cr>
