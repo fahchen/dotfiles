@@ -83,6 +83,7 @@ Plug 'dag/vim-fish'
 Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
 Plug 'posva/vim-vue', { 'for': 'vue' }
 Plug 'jparise/vim-graphql', { 'for': 'graphql' }
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 
 
 " Lint
