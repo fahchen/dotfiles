@@ -378,6 +378,9 @@ let g:signify_sign_changedelete = '-'
 " ALE
 " ----------------------------------------------------------------------------
 let g:ale_linters = {'java': [], 'yaml': [], 'scala': [], 'clojure': [], 'graphql': ['gqlint'], 'elixir': []}
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\ }
 " let g:ale_fixers = {'ruby': ['rubocop']}
 " let g:ale_lint_delay = 1000
 let g:ale_sign_warning = '──'
@@ -388,6 +391,7 @@ let g:ale_lint_on_insert_leave = 0
 " " You can disable this option too
 " " if you don't want linters to run on opening a file
 let g:ale_lint_on_enter = 0
+let g:ale_fix_on_save = 1
 
 " ----------------------------------------------------------------------------
 " Airline
