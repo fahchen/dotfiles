@@ -62,6 +62,9 @@ Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 let g:mix_format_silent_errors = 0
 let g:mix_format_on_save = 1
 
+" Rust
+let g:rustfmt_autosave = 1
+
 " Lint
 Plug 'dense-analysis/ale'
 
