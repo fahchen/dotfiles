@@ -118,6 +118,7 @@ Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
 
 
+Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
 
@@ -411,3 +412,13 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+" ----------------------------------------------------------------------------
+" ale
+" ----------------------------------------------------------------------------
+let g:ale_fix_on_save = 1
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\   'elixir': ['mix_format'],
+\}
