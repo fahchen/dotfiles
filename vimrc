@@ -38,6 +38,7 @@ set report      =0         " Always report changed lines.
 set synmaxcol   =200       " Only highlight the first 200 columns.
 
 set number
+set relativenumber
 set smartindent "Do smart autoindenting when starting a new line.
 set scrolloff =5
 set nojoinspaces
