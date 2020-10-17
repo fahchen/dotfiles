@@ -144,7 +144,7 @@ nnoremap <leader>O O<ESC>
 inoremap <C-s>     <C-O>:update<CR>
 nnoremap <C-s>     :update<CR>
 inoremap <C-@> <ESC>
-vnoremap <C-@> <ESC>
+noremap <C-@> <ESC>
 nnoremap <Leader>b :bd<cr>
 nnoremap <Leader>q :q<cr>
 nnoremap <Leader>Q :qa!<cr>
