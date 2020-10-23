@@ -210,6 +210,12 @@ function! s:zoom()
 endfunction
 nnoremap <silent> <leader>z :call <sid>zoom()<cr>
 
+function! CopyFileName()
+  let @* = expand('%')
+  execute 'file'
+endfunction
+map <c-g> :call CopyFileName()<cr>
+
 " ----------------------------------------------------------------------------
 " Theme
 " ----------------------------------------------------------------------------
