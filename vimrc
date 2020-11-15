@@ -49,6 +49,11 @@ set nowrap " Don't wrap lines
 set linebreak " Wrap lines at convenient points
 set synmaxcol =1000 " Maximum column in which to search for syntax items
 
+" spell check
+set spell spelllang=en_us
+set complete+=kspell
+set spellcapcheck=""
+
 set list                   " Show non-printable characters.
 if has('multi_byte') && &encoding ==# 'utf-8'
   let &listchars = 'tab:▸ ,extends:❯,precedes:❮,nbsp:±'
