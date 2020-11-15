@@ -223,6 +223,10 @@ let g:nord_uniform_diff_background = 1
 let g:nord_bold_vertical_split_line = 1
 let g:nord_uniform_status_lines = 1
 let g:nord_cursor_line_number_background = 1
+" https://github.com/arcticicestudio/nord-vim/issues/227#issuecomment-717772543
+if (has("termguicolors"))
+  set termguicolors
+endif
 colorscheme nord
 let g:lightline = {
       \ 'colorscheme': 'nord',
