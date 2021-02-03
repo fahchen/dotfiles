@@ -110,6 +110,7 @@ Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'bogado/file-line'
 Plug 'arthurxavierx/vim-caser'
 
 " Lang
@@ -174,35 +175,6 @@ nnoremap g. :normal! `[v`]<cr><left>
 " <tab> / <s-tab> | Circular windows navigation
 nnoremap <tab>   <c-w>w
 nnoremap <S-tab> <c-w>W
-
-" ----------------------------------------------------------------------------
-" Open FILENAME:LINE:COL
-" ----------------------------------------------------------------------------
-function! s:goto_line()
-  let tokens = split(expand('%'), ':')
-  if len(tokens) <= 1 || !filereadable(tokens[0])
-    return
-  endif
-
-  let file = tokens[0]
-  let rest = map(tokens[1:], 'str2nr(v:val)')
-  let line = get(rest, 0, 1)
-  let col  = get(rest, 1, 1)
-  bd!
-  silent execute 'e' file
-  execute printf('normal! %dG%d|', line, col)
-endfunction
-
-" goto line
-augroup vimrc
-  " http://vim.wikia.com/wiki/Highlight_unwanted_spaces
-  au BufNewFile,BufRead,InsertLeave * silent! match ExtraWhitespace /\s\+$/
-  au InsertEnter * silent! match ExtraWhitespace /\s\+\%#\@<!$/
-
-  " Unset paste on InsertLeave
-  au InsertLeave * silent! set nopaste
-augroup END
-autocmd vimrc BufNewFile * nested call s:goto_line()
 
 " Zoom
 function! s:zoom()
