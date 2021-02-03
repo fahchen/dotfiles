@@ -401,4 +401,12 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 nmap <leader>f :<C-u>CocCommand prettier.formatFile<CR>
 
 " ----------------------------------------------------------------------------
+" visual-at.vim
+" https://github.com/stoeffel/.dotfiles/blob/8b44cedde16037d21aa8fcea7bea3e1a173ccfe8/vim/visual-at.vim#L1-L6
 " ----------------------------------------------------------------------------
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+
+function! ExecuteMacroOverVisualRange()
+  echo "@".getcmdline()
+  execute ":'<,'>normal @".nr2char(getchar())
+endfunction
