@@ -125,7 +125,6 @@ Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
 
 
-Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'dstein64/vim-win'
@@ -398,6 +397,4 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 " ----------------------------------------------------------------------------
-" ale
 " ----------------------------------------------------------------------------
-let g:ale_linters_explicit = 1
