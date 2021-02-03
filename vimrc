@@ -149,8 +149,8 @@ let maplocalleader = ','
 " Open new line below and above current line
 nnoremap <leader>o o<ESC>
 nnoremap <leader>O O<ESC>
-inoremap <C-s>     <C-O>:update<CR>
-nnoremap <C-s>     :update<CR>
+inoremap <C-s>     <C-O>:update<CR><ESC>
+nnoremap <C-s>     :update<CR><ESC>
 inoremap <C-@> <ESC>
 noremap <C-@> <ESC>
 nnoremap <Leader>b :bd<cr>
