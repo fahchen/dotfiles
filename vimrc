@@ -110,6 +110,7 @@ Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'arthurxavierx/vim-caser'
 
 " Lang
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
