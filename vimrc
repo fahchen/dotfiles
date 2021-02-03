@@ -209,10 +209,16 @@ let g:lightline = {
       \ 'colorscheme': 'nord',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified' ] ]
+      \             [ 'readonly', 'relativepath' ] ],
+      \   'right': [ [ 'filetype', 'lineinfo' ], [ 'syntastic' ] ]
       \ },
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '', 'right': '' },
       \ 'component': {
       \   'lineinfo': '%3l:%-2v%<',
+      \ },
+      \ 'component_function': {
+      \   'relativepath': 'LightlineFilePath',
       \ },
       \ 'mode_map': {
         \ 'n' : '🚀 N',
@@ -228,6 +234,17 @@ let g:lightline = {
         \ 't': 'T',
         \ },
       \ }
+
+function! LightlineFilePath()
+  let filepath = expand('%') !=# '' ? expand('%') : '[No Name]'
+  let modified = &modified ? ' +' : ''
+
+  if winwidth(0) - strlen(filepath) > 30
+    return filepath . modified
+  else
+    return pathshorten(filepath) . modified
+  endif
+endfunction
 
 " ----------------------------------------------------------------------------
 " rainbow_parentheses
