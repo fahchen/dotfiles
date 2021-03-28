@@ -427,3 +427,9 @@ function! ExecuteMacroOverVisualRange()
   echo "@".getcmdline()
   execute ":'<,'>normal @".nr2char(getchar())
 endfunction
+
+" ----------------------------------------------------------------------------
+" vim-caser
+" https://github.com/arthurxavierx/vim-caser
+" ----------------------------------------------------------------------------
+let g:caser_prefix = '<leader>c'
