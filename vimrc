@@ -78,10 +78,9 @@ set t_Co=256
 
 " Put all temporary files under the same directory.
 " https://github.com/mhinz/vim-galore#handling-backup-swap-undo-and-viminfo-files
-set backup
-set backupdir   =$HOME/.vim/files/backup/
-set backupext   =-vimbackup
-set backupskip  =
+" Some servers have issues with backup files, see #649 of coc.nvim.
+set nobackup
+set nowritebackup
 set directory   =$HOME/.vim/files/swap//
 set updatecount =100
 set undofile
