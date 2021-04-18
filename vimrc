@@ -434,6 +434,11 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
+" Use `<leader>j` and `<leader>k` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> <leader>k <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>j <Plug>(coc-diagnostic-next)
+
 " Prettier
 " https://github.com/neoclide/coc-prettier
 nmap <leader>f :<C-u>CocCommand prettier.formatFile<CR>
