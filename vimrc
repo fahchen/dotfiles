@@ -129,7 +129,7 @@ Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
 
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
+Plug 'josa42/vim-lightline-coc'
 Plug 'dstein64/vim-win'
 
 
@@ -212,7 +212,8 @@ let g:lightline = {
       \ 'colorscheme': 'nord',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'relativepath' ] ],
+      \             [ 'readonly', 'relativepath' ],
+      \             [ 'coc_status'  ] ],
       \   'right': [ [ 'filetype', 'lineinfo' ], [ 'syntastic' ] ]
       \ },
       \ 'separator': { 'left': '', 'right': '' },
@@ -237,6 +238,8 @@ let g:lightline = {
         \ 't': 'T',
         \ },
       \ }
+
+call lightline#coc#register()
 
 function! LightlineFilePath()
   let filepath = expand('%') !=# '' ? expand('%') : '[No Name]'
