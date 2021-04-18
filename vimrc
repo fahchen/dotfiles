@@ -49,6 +49,9 @@ set nowrap " Don't wrap lines
 set linebreak " Wrap lines at convenient points
 set synmaxcol =1000 " Maximum column in which to search for syntax items
 
+set foldmethod =indent
+set foldlevel  =999
+
 " spell check
 set spell spelllang=en_us
 set complete+=kspell
