@@ -111,7 +111,8 @@ Plug 'mhinz/vim-signify'
 " Edit
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
+Plug 'tyru/caw.vim'
+Plug 'Shougo/context_filetype.vim'
 Plug 'bogado/file-line'
 Plug 'arthurxavierx/vim-caser'
 
@@ -352,11 +353,14 @@ command! -bang -nargs=* Rg
 nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":GFiles\<cr>"
 nnoremap <silent> <Leader><Enter>  :Buffers<CR>
 
+
 " ----------------------------------------------------------------------------
-" vim-commentary
+" caw.vim
 " ----------------------------------------------------------------------------
-map  <Leader>/  <Plug>Commentary
-nmap <Leader>// <Plug>CommentaryLine
+nmap <Leader>/ <Plug>(caw:prefix)
+xmap <Leader>/ <Plug>(caw:prefix)
+map <Leader>// <Plug>(caw:hatpos:toggle)
+nmap <Leader>// <Plug>(caw:hatpos:toggle)
 
 " ----------------------------------------------------------------------------
 " coc.nvim
