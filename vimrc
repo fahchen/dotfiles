@@ -197,6 +197,7 @@ endfunction
 map <c-g> :call CopyFileName()<cr>
 
 autocmd! BufRead,BufNewFile *.json set filetype=jsonc
+autocmd! BufRead,BufNewFile *.livemd set filetype=markdown
 
 " ----------------------------------------------------------------------------
 " Theme
