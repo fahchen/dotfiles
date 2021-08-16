@@ -353,7 +353,7 @@ command! -bang -nargs=? -complete=dir GFiles
 function! RipgrepFzfWithArgs(query, fullscreen)
   let rg_command = 'rg --column --line-number --no-heading --color=always --smart-case ' . a:query
   let spec = a:fullscreen ? 'up:60%' : 'right:50%:hidden'
-  call fzf#vim#grep(rg_command, 1, fzf#vim#with_preview(spec, 'ctrl-/'), a:fullscreen)
+  call fzf#vim#grep(rg_command, 1, fzf#vim#with_preview(spec, 'ctrl-p'), a:fullscreen)
 endfunction
 
 command! -nargs=* -bang Rg call RipgrepFzfWithArgs(<q-args>, <bang>0)
