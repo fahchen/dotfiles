@@ -126,6 +126,7 @@ Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
+Plug 'neoclide/jsonc.vim'
 
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -194,6 +195,8 @@ function! CopyFileName()
   execute 'file'
 endfunction
 map <c-g> :call CopyFileName()<cr>
+
+autocmd! BufRead,BufNewFile *.json set filetype=jsonc
 
 " ----------------------------------------------------------------------------
 " Theme
