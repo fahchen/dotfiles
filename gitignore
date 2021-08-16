@@ -5,3 +5,5 @@ yarn-error.log
 .todo
 .elixir_ls/
 .vscode/
+
+.iex.exs
