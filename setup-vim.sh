@@ -3,6 +3,8 @@
 set -o nounset    # error when referencing undefined variable
 set -o errexit    # exit when command fails
 
+ln -s $(pwd)/vimrc ~/.vimrc
+
 # source brew
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
@@ -28,4 +30,4 @@ fi
 npm install coc-snippets --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
 
 # install  plugins
-vim +PlugInstall +qall
+vim -u ~/.vimrc +PlugInstall +qall

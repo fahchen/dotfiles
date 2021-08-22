@@ -23,11 +23,11 @@ RUN NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.co
 COPY Brewfile .
 RUN eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && brew bundle
 
-WORKDIR /root
+RUN echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.bashrc
+
+WORKDIR /root/test
 
 # Setup dotfiles
-RUN echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> .bashrc
-COPY vimrc .vimrc
-COPY setup-vim.sh .
+COPY vimrc setup-*.sh install.sh .
 
-RUN bash setup-vim.sh
+RUN bash install.sh
