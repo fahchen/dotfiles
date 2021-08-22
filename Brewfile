@@ -3,3 +3,4 @@ tap "homebrew/cask"
 
 brew "node"
 brew "vim"
+brew "tmux"
