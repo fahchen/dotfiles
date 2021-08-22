@@ -211,7 +211,7 @@ let g:nord_cursor_line_number_background = 1
 if (has("termguicolors"))
   set termguicolors
 endif
-colorscheme nord
+silent! colorscheme nord
 let g:lightline = {
       \ 'colorscheme': 'nord',
       \ 'active': {
@@ -243,7 +243,7 @@ let g:lightline = {
         \ },
       \ }
 
-call lightline#coc#register()
+silent! call lightline#coc#register()
 
 function! LightlineFilePath()
   let filepath = expand('%') !=# '' ? expand('%') : '[No Name]'
