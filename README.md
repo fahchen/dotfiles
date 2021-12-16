@@ -1,12 +1,8 @@
 # Philz dotfiles
 
-## Requirement
-https://github.com/junegunn/vim-plug
+## NeoVim
+```bash
+ln -s $PWD/nvim ~/.config/nvim
 
-https://github.com/ryanoasis/nerd-fonts
-
-https://github.com/so-fancy/diff-so-fancy
-
-https://github.com/BurntSushi/ripgrep
-
-https://github.com/wting/autojump
+nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerInstall'
+```

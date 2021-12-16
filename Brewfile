@@ -1,6 +1,8 @@
-# 'brew tap'
-tap "homebrew/cask"
-
-brew "node"
-brew "vim"
-brew "tmux"
+exa
+bat
+ripgrep
+delta
+starship
+tmux
+yarn
+autojump
