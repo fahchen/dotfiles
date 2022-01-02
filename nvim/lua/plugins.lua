@@ -229,6 +229,8 @@ require('packer').startup(function()
     } end
   }
 
+  use { "lambdalisue/suda.vim" }
+
   use { "github/copilot.vim" }
   use { "arthurxavierx/vim-caser" }
   use { "tpope/vim-surround" }

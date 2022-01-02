@@ -104,3 +104,6 @@ map("n", "<Esc>", ":noh <CR>")
 
 -- yank from current cursor to end of line
 map("n", "Y", "yg$")
+
+-- save read-only files
+map("c", "!!", "<cmd>SudaWrite<CR>")
