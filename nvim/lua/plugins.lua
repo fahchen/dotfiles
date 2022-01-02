@@ -204,6 +204,7 @@ require('packer').startup(function()
   use { 'L3MON4D3/LuaSnip' }
 
   use { 'tpope/vim-fugitive' } -- Git commands in nvim
+  use { 'airblade/vim-gitgutter' }
 
   use {
     "folke/trouble.nvim",
