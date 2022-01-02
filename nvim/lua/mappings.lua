@@ -107,3 +107,9 @@ map("n", "Y", "yg$")
 
 -- save read-only files
 map("c", "!!", "<cmd>SudaWrite<CR>")
+
+-- resize splits more quickly
+map("n", "<c-w>+", "<cmd> resize +5 <CR>")
+map("n", "<c-w>-", "<cmd> resize -5 <CR>")
+map("n", "<c-w>>", "<cmd> vertical resize +5 <CR>")
+map("n", "<c-w><", "<cmd> vertical resize -5 <CR>")
