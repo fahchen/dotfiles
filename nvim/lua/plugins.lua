@@ -137,16 +137,18 @@ require('packer').startup(function()
     config = function() require'nvim-tree'.setup {
       disable_netrw = true,
       hijack_netrw = true,
+      update_cwd = true,
       open_on_tab = true,
-      auto_close = true,
       number = true,
       relativenumber = true,
       view = {
 	number = true,
-	relativenumber = true,
+	relativenunber = true,
+        preserve_window_proportions = true,
       },
       filters = {
-	custom = {"node-modules", "_build", "deps", ".git"}
+	custom = {"^node-modules$", "^_build$", "^deps$", "^\\.git$"},
+        exclude = {"dev.exs", "prod.exs", "test.exs"}
       }
     } end
   }
