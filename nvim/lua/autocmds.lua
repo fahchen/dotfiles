@@ -8,3 +8,6 @@ vim.cmd [[ autocmd BufRead * autocmd FileType <buffer> ++once if &ft !~# 'commit
 -- Lsp
 vim.cmd [[autocmd CursorHoldI,CursorMovedI * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})]]
 vim.cmd [[autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js,*.vue EslintFixAll]]
+
+-- NvimTree
+vim.cmd [[autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif]]
