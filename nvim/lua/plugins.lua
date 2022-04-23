@@ -268,12 +268,14 @@ local on_attach = function(client, bufnr)
 
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 
-  -- formatting
-  if client.resolved_capabilities.document_formatting then
-    vim.api.nvim_command [[augroup Format]]
-    vim.api.nvim_command [[autocmd! * <buffer>]]
-    vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
-    vim.api.nvim_command [[augroup END]]
+  if client.name ~= "tsserver" then
+    -- formatting
+    if client.resolved_capabilities.document_formatting then
+      vim.api.nvim_command [[augroup Format]]
+      vim.api.nvim_command [[autocmd! * <buffer>]]
+      vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
+      vim.api.nvim_command [[augroup END]]
+    end
   end
 
     --protocol.SymbolKind = { }
@@ -318,11 +320,6 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
-
-nvim_lsp.eslint.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
 
 nvim_lsp.elixirls.setup{
   cmd = { "/Users/fahchen/.dev-tools/elixir-ls/release/language_server.sh" },
