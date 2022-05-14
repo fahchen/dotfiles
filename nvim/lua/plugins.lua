@@ -157,12 +157,25 @@ require('packer').startup(function()
       hijack_netrw = true,
       update_cwd = true,
       open_on_tab = true,
-      number = true,
-      relativenumber = true,
       view = {
 	number = true,
-	relativenunber = true,
+        relativenumber = true,
         preserve_window_proportions = true,
+        mappings = {
+          custom_only = false,
+          list = {
+            {
+              key = "+",
+              action = "increase_width",
+              action_cb = function() require'nvim-tree.view'.resize("+5") end,
+            },
+            {
+              key = "-",
+              action = "decrease_width",
+              action_cb = function() require'nvim-tree.view'.resize("-5") end,
+            },
+          },
+        },
       },
       filters = {
 	custom = {"^node-modules$", "^_build$", "^deps$", "^\\.git$"},
