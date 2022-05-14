@@ -17,7 +17,7 @@ require('packer').startup(function()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim' -- Package manager
 
-  use 'arcticicestudio/nord-vim' -- Nord colorscheme
+  use { 'arcticicestudio/nord-vim', branch = 'main' } -- Nord colorscheme
   -- UI to select things (files, grep results, open buffers...)
   use {
     'nvim-telescope/telescope.nvim',
