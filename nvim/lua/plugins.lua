@@ -75,7 +75,25 @@ require('packer').startup(function()
 	     filetypes = { "png", "webp", "jpg", "jpeg" },
 	     find_cmd = "rg", -- find command (defaults to `fd`)
 	  },
-	},
+
+          dash = {
+            -- search engine to fall back to when Dash has no results, must be one of: 'ddg', 'duckduckgo', 'startpage', 'google'
+            search_engine = 'google',
+            -- debounce while typing, in milliseconds
+            debounce = 0,
+            -- map filetype strings to the keywords you've configured for docsets in Dash
+            -- setting to false will disable filtering by filetype for that filetype
+            -- filetypes not included in this table will not filter the query by filetype
+            -- check src/lua_bindings/dash_config_binding.rs to see all defaults
+            -- the values you pass for file_type_keywords are merged with the defaults
+            -- to disable filtering for all filetypes,
+            -- set file_type_keywords = false
+            file_type_keywords = {
+              elixir = { 'el', 'elr', 'elixir', 'erlang', 'ecto' },
+              javascript = { 'js', 'node', 'javascript', 'typescript', 'ts' },
+            },
+          },
+        },
       }
     end
   }
@@ -237,6 +255,11 @@ require('packer').startup(function()
   use { "github/copilot.vim" }
   use { "arthurxavierx/vim-caser" }
   use { "tpope/vim-surround" }
+
+  use {
+    'mrjones2014/dash.nvim',
+    run = 'make install',
+  }
 
   if packer_bootstrap then
     require('packer').sync()

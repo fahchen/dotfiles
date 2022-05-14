@@ -61,6 +61,10 @@ map('n', '<leader><Enter>', [[<cmd>lua require('telescope.builtin').buffers()<CR
 map('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').git_status()<CR>]])
 map('n', '<leader>t', [[<cmd>lua require('telescope.builtin').treesitter()<CR>]])
 
+-- Dash
+map("n", "<leader>d", [[<cmd>lua require('dash').search(false, '')<CR>]])
+map("n", "<leader>D", [[<cmd>lua require('dash').search(false, vim.fn.expand('<cword>'))<CR>]])
+
 -- editor
 map("i", "<c-s>", "<cmd>:w<CR>")
 map("n", "<c-s>", "<cmd>:w<CR>")
