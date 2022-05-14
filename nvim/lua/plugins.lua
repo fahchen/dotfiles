@@ -222,11 +222,34 @@ require('packer').startup(function()
 	  additional_vim_regex_highlighting = false,
 	},
 	incremental_selection = { enable = true },
-	textobjects = { enable = true },
+        textobjects = {
+          select = {
+            enable = true,
+
+            -- Automatically jump forward to textobj, similar to targets.vim
+            lookahead = true,
+
+            keymaps = {
+              -- You can use the capture groups defined in textobjects.scm
+              ["af"] = "@function.outer",
+              ["ac"] = "@block.inner",
+              ["ic"] = "@block.outer",
+            },
+          },
+        },
+        context_commentstring = {
+          enable = true,
+          config = {
+            elixir = '# %s',
+            eelixir = '<%# %s %>',
+            heex = '{!-- %s --}',
+          },
+        },
       }
     end
   }
   use 'nvim-treesitter/nvim-treesitter-textobjects'
+  use 'JoosepAlviste/nvim-ts-context-commentstring'
 
   use { 'neovim/nvim-lspconfig' } -- Collection of configurations for built-in LSP client
   use { 'hrsh7th/nvim-cmp' }
@@ -256,9 +279,7 @@ require('packer').startup(function()
       comment_empty = false,
       create_mappings = false,
       hook = function()
-	if vim.api.nvim_buf_get_option(0, "filetype") == "vue" then
-	  require("ts_context_commentstring.internal").update_commentstring()
-	end
+        require("ts_context_commentstring.internal").update_commentstring()
       end,
     } end
   }
