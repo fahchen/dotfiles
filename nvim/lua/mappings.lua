@@ -55,7 +55,9 @@ map("i", "<c-v>", 'copilot#Accept("")', { silent = true, script = true, expr = t
 
 -- Telescope
 map("n", "<leader>gc", [[<cmd>lua require'telescope.builtin'.grep_string()<CR>]]) 
+map("n", "<leader>gC", [[<cmd>lua require'telescope.builtin'.grep_string({ word_match = '-w'})<CR>]]) 
 map('n', '<leader>gg', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]])
+map('n', '<leader>gG', [[<cmd>lua require('telescope.builtin').live_grep({ additional_args = function(opts) return { '-w' } end })<CR>]])
 map("n", "<leader><leader>", [[<cmd>lua require'telescope.builtin'.find_files()<CR>]]) 
 map('n', '<leader><Enter>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]])
 map('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').git_status()<CR>]])
