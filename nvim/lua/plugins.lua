@@ -89,7 +89,7 @@ require('packer').startup(function()
             -- to disable filtering for all filetypes,
             -- set file_type_keywords = false
             file_type_keywords = {
-              elixir = { 'el', 'elr', 'elixir', 'erlang', 'ecto' },
+              elixir = { 'el', 'erl', 'elixir', 'erlang', 'ecto' },
               javascript = { 'js', 'node', 'javascript', 'typescript', 'ts' },
             },
           },
