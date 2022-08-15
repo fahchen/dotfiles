@@ -52,15 +52,3 @@ vim.cmd [[colorscheme nord]]
 vim.api.nvim_set_keymap('', ',', '<Nop>', { noremap = true, silent = true })
 vim.g.mapleader = ','
 vim.g.maplocalleader = ','
-
--- Plugins
-
-vim.g.nvim_tree_special_files = {
-  ["Cargo.toml"] = true,
-  Makefile = true,
-  ["README.md"] = true,
-  ["readme.md"] = true,
-  ["mix.exs"] = true,
-  ["packages.json"] = true,
-  ["Dockerfile"] = true,
-}

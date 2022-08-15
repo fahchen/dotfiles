@@ -177,6 +177,17 @@ require('packer').startup(function()
           },
         },
       },
+      renderer = {
+        special_files = {
+          "Cargo.toml",
+          "Makefile",
+          "README.md",
+          "readme.md",
+          "mix.exs",
+          "packages.json",
+          "Dockerfile",
+        }
+      },
       filters = {
 	custom = {"^node-modules$", "^_build$", "^deps$", "^\\.git$"},
         exclude = {"dev.exs", "prod.exs", "test.exs"}
