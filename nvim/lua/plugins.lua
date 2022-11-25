@@ -317,6 +317,7 @@ local protocol = require'vim.lsp.protocol'
 
 vim.diagnostic.config({
   virtual_text = false,
+  update_in_insert = true,
 })
 
 local on_attach = function(client, bufnr)
