@@ -51,7 +51,7 @@ require('packer').startup(function()
 	     preview_cutoff = 120,
 	  },
 	  file_sorter = require("telescope.sorters").get_fuzzy_file,
-	  file_ignore_patterns = { "node_modules", "deps", "_build", ".git" },
+	  file_ignore_patterns = { "/node_modules/", "/deps/", "/_build/", "/.git/" },
 	  generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
 	  path_display = { "truncate" },
 	  winblend = 0,
@@ -190,7 +190,7 @@ require('packer').startup(function()
         }
       },
       filters = {
-	custom = {"^node-modules$", "^_build$", "^deps$", "^\\.git$"},
+	custom = {"^node-modules/", "^_build/", "^deps/", "^\\.git/"},
         exclude = {"dev.exs", "prod.exs", "test.exs"}
       }
     } end
