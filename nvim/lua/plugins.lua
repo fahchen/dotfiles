@@ -18,6 +18,7 @@ require('packer').startup(function()
   use 'wbthomason/packer.nvim' -- Package manager
 
   use { 'arcticicestudio/nord-vim', branch = 'main' } -- Nord colorscheme
+  use { 'cocopon/iceberg.vim' }
   -- UI to select things (files, grep results, open buffers...)
   use {
     'nvim-telescope/telescope.nvim',
