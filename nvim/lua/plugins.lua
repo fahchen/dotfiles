@@ -344,14 +344,12 @@ local on_attach = function(client, bufnr)
     vim.api.nvim_command [[autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js,*.vue EslintFixAll]]
   end
 
-  if client.name ~= "tsserver" and client.name ~= "volar" then
-    -- formatting
-    if client.server_capabilities.documentFormattingProvider then
-      vim.api.nvim_command [[augroup Format]]
-      vim.api.nvim_command [[autocmd! * <buffer>]]
-      vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format({ async = false })]]
-      vim.api.nvim_command [[augroup END]]
-    end
+  -- formatting
+  if client.server_capabilities.documentFormattingProvider then
+    vim.api.nvim_command [[augroup Format]]
+    vim.api.nvim_command [[autocmd! * <buffer>]]
+    vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format({ async = false })]]
+    vim.api.nvim_command [[augroup END]]
   end
 
     --protocol.SymbolKind = { }
