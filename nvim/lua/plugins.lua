@@ -314,6 +314,7 @@ end)
 
 -- LSP settings
 local nvim_lsp = require'lspconfig'
+local util = require 'lspconfig.util'
 local protocol = require'vim.lsp.protocol'
 
 vim.diagnostic.config({
@@ -339,7 +340,11 @@ local on_attach = function(client, bufnr)
 
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.format()' ]]
 
-  if client.name ~= "tsserver" then
+  if client.name == "eslint" then
+    vim.api.nvim_command [[autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js,*.vue EslintFixAll]]
+  end
+
+  if client.name ~= "tsserver" and client.name ~= "volar" then
     -- formatting
     if client.server_capabilities.documentFormattingProvider then
       vim.api.nvim_command [[augroup Format]]
@@ -384,13 +389,52 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Enable the following language servers
-local servers = { "volar", "tsserver", "eslint", "rls", "rust_analyzer", "html", "jsonls", "cssls", "tailwindcss", "sqlls" }
+local servers = { "tsserver", "rls", "rust_analyzer", "html", "jsonls", "cssls", "tailwindcss", "sqlls" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
     capabilities = capabilities,
   }
 end
+
+nvim_lsp.eslint.setup{
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    packageManager = "pnpm",
+    format = {
+      enable = false,
+    },
+    codeActionsOnSave = {
+      mode = 'problems',
+      enable = true,
+    },
+  },
+}
+
+local function get_typescript_server_path(root_dir)
+  local global_ts = '/Users/fahchen/Library/pnpm/global/5/node_modules/typescript/lib'
+  local found_ts = ''
+  local function check_dir(path)
+    found_ts =  util.path.join(path, 'node_modules', 'typescript', 'lib')
+    if util.path.exists(found_ts) then
+      return path
+    end
+  end
+  if util.search_ancestors(root_dir, check_dir) then
+    return found_ts
+  else
+    return global_ts
+  end
+end
+
+nvim_lsp.volar.setup{
+  on_attach = on_attach,
+  capabilities = capabilities,
+  on_new_config = function(new_config, new_root_dir)
+    new_config.init_options.typescript.tsdk = get_typescript_server_path(new_root_dir)
+  end,
+}
 
 nvim_lsp.elixirls.setup{
   cmd = { "/Users/fahchen/.dev-tools/elixir-ls/release/language_server.sh" },
