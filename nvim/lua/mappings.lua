@@ -82,6 +82,7 @@ map("n", "<leader>td", "<cmd>TroubleToggle<cr>")
 
 -- misc
 map("n", "<c-g>", "<cmd>lua require('functions').copy_file_path()<CR>")
+map("n", "<c-w>z", "<cmd>lua require('functions').set_window_width_to_max_line_width()<CR>")
 
 -- comments
 map("n", "<leader>/", ":CommentToggle <CR>")
