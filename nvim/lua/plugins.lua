@@ -271,6 +271,10 @@ require('packer').startup(function()
   use { 'saadparwaiz1/cmp_luasnip' }
   use { 'L3MON4D3/LuaSnip' }
 
+
+  -- language
+  use("simrat39/rust-tools.nvim")
+
   use { 'tpope/vim-fugitive' } -- Git commands in nvim
   use { 'airblade/vim-gitgutter' }
 
@@ -387,7 +391,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Enable the following language servers
-local servers = { "tsserver", "rls", "rust_analyzer", "html", "jsonls", "cssls", "tailwindcss", "sqlls" }
+local servers = { "tsserver", "rust_analyzer", "html", "jsonls", "cssls", "tailwindcss", "sqlls" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
