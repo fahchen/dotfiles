@@ -291,6 +291,8 @@ require('packer').startup(function()
   use { 'tpope/vim-fugitive' } -- Git commands in nvim
   use { 'airblade/vim-gitgutter' }
 
+  use { 'nvim-tree/nvim-web-devicons' }
+
   use {
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
