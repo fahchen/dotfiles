@@ -52,3 +52,8 @@ vim.cmd [[colorscheme nord]]
 vim.api.nvim_set_keymap('', ',', '<Nop>', { noremap = true, silent = true })
 vim.g.mapleader = ','
 vim.g.maplocalleader = ','
+
+-- denols
+vim.g.markdown_fenced_languages = {
+  "ts=typescript"
+}

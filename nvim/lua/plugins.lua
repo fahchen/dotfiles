@@ -406,7 +406,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Enable the following language servers
-local servers = { "tsserver", "rust_analyzer", "html", "jsonls", "cssls", "tailwindcss", "sqlls" }
+local servers = { "rust_analyzer", "html", "jsonls", "cssls", "tailwindcss", "sqlls" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -427,6 +427,19 @@ nvim_lsp.eslint.setup{
       enable = true,
     },
   },
+}
+
+nvim_lsp.denols.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc"),
+}
+
+nvim_lsp.tsserver.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  root_dir = nvim_lsp.util.root_pattern("package.json"),
+  single_file_support = false,
 }
 
 local function get_typescript_server_path(root_dir)
