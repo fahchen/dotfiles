@@ -406,7 +406,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Enable the following language servers
-local servers = { "rust_analyzer", "html", "jsonls", "cssls", "tailwindcss", "sqlls" }
+local servers = { "rust_analyzer", "html", "jsonls", "cssls", "tailwindcss", "sqlls", "bashls", "gopls" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
