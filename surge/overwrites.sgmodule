@@ -1,0 +1,28 @@
+#!name=Overwrites
+#!desc=https://github.com/fahchen/dotfiles/tree/main/surge/overwrites.sgmodule
+
+[General]
+skip-proxy = %APPEND%, jet.work, *.jet.work, *.skylarkly.com, *.jd.com , *.qq.com, fahchen.dev, *.local, *.localhost
+
+[Host]
+*.localhost = 127.0.0.1
+*.local = 127.0.0.1
+
+[URL Rewrite]
+^https?://(www.)?g.cn https://www.google.com 302
+^https?://(www.)?google.cn https://www.google.com 302
+^https?://youtube.com https://www.youtube.com 302
+http://airbase/ https://github.com/Byzanteam/jet-airbase 302
+http://aircrew/ https://github.com/Byzanteam/jet-aircrew 302
+http://g/ https://github.com 302
+
+[Rule]
+# Local network
+IP-CIDR,10.0.0.0/8,DIRECT
+IP-CIDR,127.0.0.0/8,DIRECT
+IP-CIDR,172.16.0.0/12,DIRECT
+IP-CIDR,192.168.0.0/16,DIRECT
+IP-CIDR,100.64.0.0/10,DIRECT
+
+[SSID Setting]
+"Philz XII" cellular-mode=true
