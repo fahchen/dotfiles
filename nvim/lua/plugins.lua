@@ -334,14 +334,13 @@ end)
 -- LSP settings
 local nvim_lsp = require'lspconfig'
 local util = require 'lspconfig.util'
-local protocol = require'vim.lsp.protocol'
 
 vim.diagnostic.config({
   virtual_text = false,
   update_in_insert = true,
 })
 
-local on_attach = function(client, bufnr)
+local default_on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   local opts = { noremap = true, silent = true }
@@ -356,49 +355,25 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>k', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>j', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>fm', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
+end
 
-  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.format()' ]]
+local formatting_callback = function(client, bufnr)
+  local formatting_auid = vim.api.nvim_create_augroup("Formatting", {
+    clear = true
+  })
 
-  if client.name == "eslint" then
-    vim.api.nvim_command [[autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js,*.vue EslintFixAll]]
-  end
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    group = formatting_auid,
+    buffer = bufnr,
+    callback = function()
+      vim.lsp.buf.format({ async = false })
+    end
+  })
+end
 
-  -- formatting
-  if client.server_capabilities.documentFormattingProvider then
-    vim.api.nvim_command [[augroup Format]]
-    vim.api.nvim_command [[autocmd! * <buffer>]]
-    vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format({ async = false })]]
-    vim.api.nvim_command [[augroup END]]
-  end
-
-    --protocol.SymbolKind = { }
-  protocol.CompletionItemKind = {
-    '', -- Text
-    '', -- Method
-    '', -- Function
-    '', -- Constructor
-    '', -- Field
-    '', -- Variable
-    '', -- Class
-    'ﰮ', -- Interface
-    '', -- Module
-    '', -- Property
-    '', -- Unit
-    '', -- Value
-    '', -- Enum
-    '', -- Keyword
-    '﬌', -- Snippet
-    '', -- Color
-    '', -- File
-    '', -- Reference
-    '', -- Folder
-    '', -- EnumMember
-    '', -- Constant
-    '', -- Struct
-    '', -- Event
-    'ﬦ', -- Operator
-    '', -- TypeParameter
-  }
+local common_on_attach = function(client, bufnr)
+  default_on_attach(client, bufnr)
+  formatting_callback(client, bufnr)
 end
 
 -- nvim-cmp supports additional completion capabilities
@@ -409,13 +384,26 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 local servers = { "rust_analyzer", "html", "jsonls", "cssls", "tailwindcss", "sqlls", "bashls", "gopls" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
-    on_attach = on_attach,
+    on_attach = common_on_attach,
     capabilities = capabilities,
   }
 end
 
 nvim_lsp.eslint.setup{
-  on_attach = on_attach,
+  on_attach = function(client, bufnr)
+    default_on_attach(client, bufnr)
+
+    -- formatting
+    local formatting_auid = vim.api.nvim_create_augroup("Formatting", {
+      clear = true
+    })
+
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      group = formatting_auid,
+      buffer = bufnr,
+      command = "EslintFixAll",
+    })
+  end,
   capabilities = capabilities,
   settings = {
     packageManager = "pnpm",
@@ -430,13 +418,13 @@ nvim_lsp.eslint.setup{
 }
 
 nvim_lsp.denols.setup {
-  on_attach = on_attach,
+  on_attach = common_on_attach,
   capabilities = capabilities,
   root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc", ".jet/queries"),
 }
 
 nvim_lsp.tsserver.setup {
-  on_attach = on_attach,
+  on_attach = default_on_attach,
   capabilities = capabilities,
   root_dir = nvim_lsp.util.root_pattern("package.json"),
   single_file_support = false,
@@ -459,7 +447,7 @@ local function get_typescript_server_path(root_dir)
 end
 
 nvim_lsp.volar.setup{
-  on_attach = on_attach,
+  on_attach = default_on_attach,
   capabilities = capabilities,
   on_new_config = function(new_config, new_root_dir)
     new_config.init_options.typescript.tsdk = get_typescript_server_path(new_root_dir)
@@ -468,7 +456,7 @@ nvim_lsp.volar.setup{
 
 nvim_lsp.elixirls.setup{
   cmd = { "/Users/fahchen/.dev-tools/elixir-ls/release/language_server.sh" },
-  on_attach = on_attach,
+  on_attach = common_on_attach,
   capabilities = capabilities,
   settings = {
     elixirLS = {
@@ -505,7 +493,7 @@ local opts = {
   -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
   server = {
     -- on_attach is a callback called when the language server attachs to the buffer
-    on_attach = on_attach,
+    on_attach = common_on_attach,
     settings = {
       -- to enable rust-analyzer settings visit:
       -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
@@ -526,6 +514,35 @@ local luasnip = require 'luasnip'
 
 -- nvim-cmp setup
 local cmp = require 'cmp'
+
+local kind_icons = {
+  Text = '', 
+  Method = '', 
+  Function = '', 
+  Constructor = '', 
+  Field = '', 
+  Variable = '', 
+  Class = '', 
+  Interface = 'ﰮ', 
+  Module = '', 
+  Property = '', 
+  Unit = '', 
+  Value = '', 
+  Enum = '', 
+  Keyword = '', 
+  Snippet = '﬌', 
+  Color = '', 
+  File = '', 
+  Reference = '', 
+  Folder = '', 
+  EnumMember = '', 
+  Constant = '', 
+  Struct = '', 
+  Event = '', 
+  Operator = 'ﬦ', 
+  TypeParameter = '', 
+}
+
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -568,5 +585,20 @@ cmp.setup {
     { name = "buffer" },
     { name = "nvim_lua" },
     { name = "path" },
+  },
+  formatting = {
+    format = function(entry, vim_item)
+      -- Kind icons
+      vim_item.kind = string.format('%s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+      -- Source
+      vim_item.menu = ({
+        buffer = "[Buffer]",
+        nvim_lsp = "[LSP]",
+        luasnip = "[LuaSnip]",
+        nvim_lua = "[Lua]",
+        latex_symbols = "[LaTeX]",
+      })[entry.source.name]
+      return vim_item
+    end
   },
 }
