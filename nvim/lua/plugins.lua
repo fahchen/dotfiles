@@ -261,6 +261,7 @@ require('packer').startup(function()
     end
   }
   use 'nvim-treesitter/nvim-treesitter-textobjects'
+  use 'nvim-treesitter/nvim-treesitter-context'
   use 'JoosepAlviste/nvim-ts-context-commentstring'
 
   use { 'neovim/nvim-lspconfig' } -- Collection of configurations for built-in LSP client
