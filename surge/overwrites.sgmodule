@@ -26,3 +26,6 @@ IP-CIDR,100.64.0.0/10,DIRECT
 
 [SSID Setting]
 "Philz XII" cellular-mode=true
+
+[Ponte]
+server-proxy-name = Proxy
