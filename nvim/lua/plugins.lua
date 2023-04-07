@@ -287,6 +287,8 @@ require('packer').startup(function()
   -- Snippet engine
   use('hrsh7th/vim-vsnip')
 
+  use('ruanyl/vim-gh-line')
+
   -- language
   use("simrat39/rust-tools.nvim")
 
