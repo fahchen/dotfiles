@@ -17,7 +17,14 @@ require('packer').startup(function()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim' -- Package manager
 
-  use { 'arcticicestudio/nord-vim', branch = 'main' } -- Nord colorscheme
+  -- theme
+  use {
+    'embark-theme/vim',
+    as = 'embark',
+    config = function()
+      vim.cmd('colorscheme embark')
+    end
+  }
   use { 'cocopon/iceberg.vim' }
   -- UI to select things (files, grep results, open buffers...)
   use {
