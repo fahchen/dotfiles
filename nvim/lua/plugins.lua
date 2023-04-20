@@ -296,6 +296,8 @@ require('packer').startup(function()
 
   use('ruanyl/vim-gh-line')
 
+  use('github/copilot.vim')
+
   -- language
   use("simrat39/rust-tools.nvim")
 
