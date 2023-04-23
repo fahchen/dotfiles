@@ -1,9 +1,10 @@
 local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
+    install_path })
 end
- 
+
 vim.cmd [[
   augroup Packer
     autocmd!
@@ -30,60 +31,60 @@ require('packer').startup(function()
   use {
     'nvim-telescope/telescope.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
-    config = function() require('telescope').setup {
-	defaults = {
-	  vimgrep_arguments = {
-	     "rg",
-	     "--color=never",
-	     "--no-heading",
-	     "--with-filename",
-	     "--line-number",
-	     "--column",
-	     "--smart-case",
-	  },
-	  initial_mode = "insert",
-	  sorting_strategy = "ascending",
-	  layout_strategy = "horizontal",
-	  layout_config = {
-	     horizontal = {
-		prompt_position = "top",
-		preview_width = 0.55,
-		results_width = 0.8,
-	     },
-	     vertical = {
-		mirror = false,
-	     },
-	     width = 0.87,
-	     height = 0.80,
-	     preview_cutoff = 120,
-	  },
-	  file_sorter = require("telescope.sorters").get_fuzzy_file,
-	  file_ignore_patterns = { "/node_modules/", "/deps/", "/_build/", "/.git/" },
-	  generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
-	  path_display = { "truncate" },
-	  winblend = 0,
-	  color_devicons = true,
-	  use_less = true,
-	  set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
-	  file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-	  grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
-	  qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
-	  -- Developer configurations: Not meant for general override
-	  buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
-	},
-	extensions = {
-	  fzf = {
-	     fuzzy = false, -- false will only do exact matching
-	     override_generic_sorter = false, -- override the generic sorter
-	     override_file_sorter = false, -- override the file sorter
-	     case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-	     -- the default case_mode is "smart_case"
-	  },
-	  media_files = {
-	     filetypes = { "png", "webp", "jpg", "jpeg" },
-	     find_cmd = "rg", -- find command (defaults to `fd`)
-	  },
-
+    config = function()
+      require('telescope').setup {
+        defaults = {
+          vimgrep_arguments = {
+            "rg",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
+          },
+          initial_mode = "insert",
+          sorting_strategy = "ascending",
+          layout_strategy = "horizontal",
+          layout_config = {
+            horizontal = {
+              prompt_position = "top",
+              preview_width = 0.55,
+              results_width = 0.8,
+            },
+            vertical = {
+              mirror = false,
+            },
+            width = 0.87,
+            height = 0.80,
+            preview_cutoff = 120,
+          },
+          file_sorter = require("telescope.sorters").get_fuzzy_file,
+          file_ignore_patterns = { "/node_modules/", "/deps/", "/_build/", "/.git/" },
+          generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+          path_display = { "truncate" },
+          winblend = 0,
+          color_devicons = true,
+          use_less = true,
+          set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
+          file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+          grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+          qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+          -- Developer configurations: Not meant for general override
+          buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
+        },
+        extensions = {
+          fzf = {
+            fuzzy = false,                   -- false will only do exact matching
+            override_generic_sorter = false, -- override the generic sorter
+            override_file_sorter = false,    -- override the file sorter
+            case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+            -- the default case_mode is "smart_case"
+          },
+          media_files = {
+            filetypes = { "png", "webp", "jpg", "jpeg" },
+            find_cmd = "rg", -- find command (defaults to `fd`)
+          },
           dash = {
             -- search engine to fall back to when Dash has no results, must be one of: 'ddg', 'duckduckgo', 'startpage', 'google'
             search_engine = 'google',
@@ -107,46 +108,50 @@ require('packer').startup(function()
   }
   use {
     'nvim-lualine/lualine.nvim',
-    requires = {'kyazdani42/nvim-web-devicons', opt = true},
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = function()
-      require'lualine'.setup {
-	options = {
-	  icons_enabled = true,
-	  theme = 'nord',
-	  section_separators = '',
-	  component_separators = '',
-	  disabled_filetypes = {},
-	  always_divide_middle = true,
-	},
-	sections = {
-	  lualine_a = {'mode'},
-	  lualine_b = {'diff', 'diagnostics'},
-	  lualine_c = {{
-	    'filename',
-	    file_status = true, -- displays file status (readonly status, modified status)
-	    path = 1 -- 0 = just filename, 1 = relative path, 2 = absolute path
-	  }},
-	  lualine_x = {
-	    { 'diagnostics', sources = {'nvim_diagnostic'}, symbols = {error = '? ', warn = '? ', info = '? ', hint = '? '} },
-	    'filetype'
-	  },
-	  lualine_y = {'progress'},
-	  lualine_z = {'location'}
-	},
-	inactive_sections = {
-	  lualine_a = {},
-	  lualine_b = {'diff'},
-	  lualine_c = {{
-	    'filename',
-	    file_status = true, -- displays file status (readonly status, modified status)
-	    path = 1 -- 0 = just filename, 1 = relative path, 2 = absolute path
-	  }},
-	  lualine_x = {'filetype'},
-	  lualine_y = {},
-	  lualine_z = {}
-	},
-	tabline = {},
-	extensions = {'fugitive'}
+      require 'lualine'.setup {
+        options = {
+          icons_enabled = true,
+          theme = 'nord',
+          section_separators = '',
+          component_separators = '',
+          disabled_filetypes = {},
+          always_divide_middle = true,
+        },
+        sections = {
+          lualine_a = { 'mode' },
+          lualine_b = { 'diff', 'diagnostics' },
+          lualine_c = { {
+            'filename',
+            file_status = true, -- displays file status (readonly status, modified status)
+            path = 1            -- 0 = just filename, 1 = relative path, 2 = absolute path
+          } },
+          lualine_x = {
+            {
+              'diagnostics',
+              sources = { 'nvim_diagnostic' },
+              symbols = { error = '? ', warn = '? ', info = '? ', hint = '? ' }
+            },
+            'filetype'
+          },
+          lualine_y = { 'progress' },
+          lualine_z = { 'location' }
+        },
+        inactive_sections = {
+          lualine_a = {},
+          lualine_b = { 'diff' },
+          lualine_c = { {
+            'filename',
+            file_status = true, -- displays file status (readonly status, modified status)
+            path = 1            -- 0 = just filename, 1 = relative path, 2 = absolute path
+          } },
+          lualine_x = { 'filetype' },
+          lualine_y = {},
+          lualine_z = {}
+        },
+        tabline = {},
+        extensions = { 'fugitive' }
       }
     end
   }
@@ -160,47 +165,49 @@ require('packer').startup(function()
       "NvimTreeToggle",
       "NvimTreeFind",
     },
-    config = function() require'nvim-tree'.setup {
-      disable_netrw = true,
-      hijack_netrw = true,
-      update_cwd = true,
-      open_on_tab = true,
-      view = {
-	number = true,
-        relativenumber = true,
-        preserve_window_proportions = true,
-        mappings = {
-          custom_only = false,
-          list = {
-            {
-              key = "+",
-              action = "increase_width",
-              action_cb = function() require'nvim-tree.view'.resize("+5") end,
-            },
-            {
-              key = "-",
-              action = "decrease_width",
-              action_cb = function() require'nvim-tree.view'.resize("-5") end,
+    config = function()
+      require 'nvim-tree'.setup {
+        disable_netrw = true,
+        hijack_netrw = true,
+        update_cwd = true,
+        open_on_tab = true,
+        view = {
+          number = true,
+          relativenumber = true,
+          preserve_window_proportions = true,
+          mappings = {
+            custom_only = false,
+            list = {
+              {
+                key = "+",
+                action = "increase_width",
+                action_cb = function() require 'nvim-tree.view'.resize("+5") end,
+              },
+              {
+                key = "-",
+                action = "decrease_width",
+                action_cb = function() require 'nvim-tree.view'.resize("-5") end,
+              },
             },
           },
         },
-      },
-      renderer = {
-        special_files = {
-          "Cargo.toml",
-          "Makefile",
-          "README.md",
-          "readme.md",
-          "mix.exs",
-          "packages.json",
-          "Dockerfile",
+        renderer = {
+          special_files = {
+            "Cargo.toml",
+            "Makefile",
+            "README.md",
+            "readme.md",
+            "mix.exs",
+            "packages.json",
+            "Dockerfile",
+          }
+        },
+        filters = {
+          custom = { "^node-modules/", "^_build/", "^deps/", "^\\.git/" },
+          exclude = { "dev.exs", "prod.exs", "test.exs" }
         }
-      },
-      filters = {
-	custom = {"^node-modules/", "^_build/", "^deps/", "^\\.git/"},
-        exclude = {"dev.exs", "prod.exs", "test.exs"}
       }
-    } end
+    end
   }
 
   use {
@@ -218,36 +225,34 @@ require('packer').startup(function()
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     config = function()
-      require'nvim-treesitter.configs'.setup {
-	ensure_installed = {
-	  "lua",
-	  "elixir",
-	  "vue",
-	  "html",
-	  "css",
-	  "javascript",
-	  "typescript",
-	  "go",
-	  "rust",
-	  "ruby",
-	  "json",
-	  "toml",
-	  "yaml",
-	},
-	sync_install = false,
-	highlight = {
-	  enable = true,
-	  use_languagetree = true,
-	  additional_vim_regex_highlighting = false,
-	},
-	incremental_selection = { enable = true },
+      require 'nvim-treesitter.configs'.setup {
+        ensure_installed = {
+          "lua",
+          "elixir",
+          "vue",
+          "html",
+          "css",
+          "javascript",
+          "typescript",
+          "go",
+          "rust",
+          "ruby",
+          "json",
+          "toml",
+          "yaml",
+        },
+        sync_install = false,
+        highlight = {
+          enable = true,
+          use_languagetree = true,
+          additional_vim_regex_highlighting = false,
+        },
+        incremental_selection = { enable = true },
         textobjects = {
           select = {
             enable = true,
-
             -- Automatically jump forward to textobj, similar to targets.vim
             lookahead = true,
-
             keymaps = {
               -- You can use the capture groups defined in textobjects.scm
               ["af"] = "@function.outer",
@@ -319,13 +324,15 @@ require('packer').startup(function()
   use {
     "terrortylor/nvim-comment",
     cmd = "CommentToggle",
-    config = function() require('nvim_comment').setup {
-      comment_empty = false,
-      create_mappings = false,
-      hook = function()
-        require("ts_context_commentstring.internal").update_commentstring()
-      end,
-    } end
+    config = function()
+      require('nvim_comment').setup {
+        comment_empty = false,
+        create_mappings = false,
+        hook = function()
+          require("ts_context_commentstring.internal").update_commentstring()
+        end,
+      }
+    end
   }
 
   use { "lambdalisue/suda.vim" }
@@ -345,7 +352,7 @@ end)
 
 
 -- LSP settings
-local nvim_lsp = require'lspconfig'
+local nvim_lsp = require 'lspconfig'
 local util = require 'lspconfig.util'
 
 vim.diagnostic.config({
@@ -394,7 +401,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Enable the following language servers
-local servers = { "rust_analyzer", "html", "jsonls", "cssls", "tailwindcss", "sqlls", "bashls", "gopls" }
+local servers = { "rust_analyzer", "html", "jsonls", "cssls", "tailwindcss", "sqlls", "bashls", "gopls", "lua_ls" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = common_on_attach,
@@ -402,7 +409,7 @@ for _, lsp in ipairs(servers) do
   }
 end
 
-nvim_lsp.eslint.setup{
+nvim_lsp.eslint.setup {
   on_attach = function(client, bufnr)
     default_on_attach(client, bufnr)
 
@@ -447,7 +454,7 @@ local function get_typescript_server_path(root_dir)
   local global_ts = '/Users/fahchen/Library/pnpm/global/5/node_modules/typescript/lib'
   local found_ts = ''
   local function check_dir(path)
-    found_ts =  util.path.join(path, 'node_modules', 'typescript', 'lib')
+    found_ts = util.path.join(path, 'node_modules', 'typescript', 'lib')
     if util.path.exists(found_ts) then
       return path
     end
@@ -459,7 +466,7 @@ local function get_typescript_server_path(root_dir)
   end
 end
 
-nvim_lsp.volar.setup{
+nvim_lsp.volar.setup {
   on_attach = default_on_attach,
   capabilities = capabilities,
   on_new_config = function(new_config, new_root_dir)
@@ -467,7 +474,7 @@ nvim_lsp.volar.setup{
   end,
 }
 
-nvim_lsp.elixirls.setup{
+nvim_lsp.elixirls.setup {
   cmd = { "/Users/fahchen/.dev-tools/elixir-ls/release/language_server.sh" },
   on_attach = common_on_attach,
   capabilities = capabilities,
@@ -500,7 +507,6 @@ local opts = {
       other_hints_prefix = "",
     },
   },
-
   -- all the opts to send to nvim-lspconfig
   -- these override the defaults set by rust-tools.nvim
   -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
@@ -529,31 +535,31 @@ local luasnip = require 'luasnip'
 local cmp = require 'cmp'
 
 local kind_icons = {
-  Text = '', 
-  Method = '', 
-  Function = '', 
-  Constructor = '', 
-  Field = '', 
-  Variable = '', 
-  Class = '', 
-  Interface = 'ﰮ', 
-  Module = '', 
-  Property = '', 
-  Unit = '', 
-  Value = '', 
-  Enum = '', 
-  Keyword = '', 
-  Snippet = '﬌', 
-  Color = '', 
-  File = '', 
-  Reference = '', 
-  Folder = '', 
-  EnumMember = '', 
-  Constant = '', 
-  Struct = '', 
-  Event = '', 
-  Operator = 'ﬦ', 
-  TypeParameter = '', 
+  Text = '',
+  Method = '',
+  Function = '',
+  Constructor = '',
+  Field = '',
+  Variable = '',
+  Class = '',
+  Interface = 'ﰮ',
+  Module = '',
+  Property = '',
+  Unit = '',
+  Value = '',
+  Enum = '',
+  Keyword = '',
+  Snippet = '﬌',
+  Color = '',
+  File = '',
+  Reference = '',
+  Folder = '',
+  EnumMember = '',
+  Constant = '',
+  Struct = '',
+  Event = '',
+  Operator = 'ﬦ',
+  TypeParameter = '',
 }
 
 cmp.setup {
