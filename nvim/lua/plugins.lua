@@ -457,13 +457,28 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Enable the following language servers
-local servers = { "rust_analyzer", "html", "jsonls", "cssls", "tailwindcss", "sqlls", "bashls", "gopls", "lua_ls" }
+local servers = { "html", "jsonls", "cssls", "tailwindcss", "sqlls", "bashls", "gopls", "lua_ls" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = common_on_attach,
     capabilities = capabilities,
   }
 end
+
+nvim_lsp.rust_analyzer.setup {
+  on_attach = common_on_attach,
+  capabilities = capabilities,
+  settings = {
+    ['rust-analyzer'] = {
+      diagnostics = {
+        enable = false,
+      },
+      cargo = {
+        features = "all",
+      },
+    },
+  },
+}
 
 nvim_lsp.eslint.setup {
   on_attach = function(client, bufnr)
@@ -576,6 +591,9 @@ local opts = {
         -- enable clippy on save
         checkOnSave = {
           command = "clippy",
+        },
+        cargo = {
+          features = "all",
         },
       },
     },
