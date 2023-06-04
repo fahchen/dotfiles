@@ -45,7 +45,6 @@ vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme (order is important here)
 vim.o.termguicolors = true
-vim.g.onedark_terminal_italics = 2
 
 -- Leader key
 vim.api.nvim_set_keymap('', ',', '<Nop>', { noremap = true, silent = true })

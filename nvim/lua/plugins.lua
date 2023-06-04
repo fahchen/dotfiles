@@ -20,13 +20,15 @@ require('packer').startup(function()
 
   -- theme
   use {
-    'embark-theme/vim',
-    as = 'embark',
+    'ayu-theme/ayu-vim',
     config = function()
-      vim.cmd('colorscheme embark')
+      -- vim.g.ayucolor = "light"
+      vim.g.ayucolor = "mirage"
+      -- vim.g.ayucolor = "dark"
+
+      vim.cmd('colorscheme ayu')
     end
   }
-  use { 'cocopon/iceberg.vim' }
   -- UI to select things (files, grep results, open buffers...)
   use {
     'nvim-telescope/telescope.nvim',
