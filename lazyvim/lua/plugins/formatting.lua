@@ -30,7 +30,6 @@ return {
           end,
           sources = function(buf)
             local ret = require("conform").list_formatters(buf)
-            print(vim.inspect(ret))
             ---@param v conform.FormatterInfo
             return vim.tbl_map(function(v)
               return v.name
