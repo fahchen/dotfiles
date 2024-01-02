@@ -4,6 +4,10 @@ yarn-error.log
 
 .todo
 .elixir_ls/
+.lexical/
 .vscode/
 
 .iex.exs
+.neoconf.json
+
+.rtx.local.toml
