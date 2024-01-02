@@ -2,7 +2,6 @@
 
 ## NeoVim
 ```bash
-ln -s $PWD/nvim ~/.config/nvim
+ln -s $PWD/lazyvim/ ~/.config/nvim
 
-nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerInstall'
 ```
