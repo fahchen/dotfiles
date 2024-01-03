@@ -30,6 +30,7 @@ return {
             },
           },
         },
+        jsonls = {},
         eslint = {
           ---@type LazyKeysSpec[]
           settings = {
