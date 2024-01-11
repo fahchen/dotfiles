@@ -13,16 +13,24 @@ function M.get()
   end
   -- stylua: ignore
   M._keys = {
-    { "<leader>cl", "<cmd>LspInfo<cr>",                                                                     desc = "Lsp Info" },
-    { "gd",         function() require("telescope.builtin").lsp_definitions({ reuse_win = true }) end,      desc = "Goto Definition",       has = "definition" },
-    { "gr",         "<cmd>Telescope lsp_references<cr>",                                                    desc = "References" },
-    { "gD",         vim.lsp.buf.declaration,                                                                desc = "Goto Declaration" },
-    { "gI",         function() require("telescope.builtin").lsp_implementations({ reuse_win = true }) end,  desc = "Goto Implementation" },
-    { "gy",         function() require("telescope.builtin").lsp_type_definitions({ reuse_win = true }) end, desc = "Goto T[y]pe Definition" },
-    { "K",          vim.lsp.buf.hover,                                                                      desc = "Hover" },
-    { "gK",         vim.lsp.buf.signature_help,                                                             desc = "Signature Help",        has = "signatureHelp" },
-    { "<c-k>",      vim.lsp.buf.signature_help,                                                             mode = "i",                     desc = "Signature Help", has = "signatureHelp" },
-    { "<leader>ca", vim.lsp.buf.code_action,                                                                desc = "Code Action",           mode = { "n", "v" },     has = "codeAction" },
+    { "<leader>cl", "<cmd>LspInfo<cr>",          desc = "Lsp Info" },
+    -- FIXME: https://github.com/nvim-telescope/telescope.nvim/issues/2768
+    -- { "gd",         function() require("telescope.builtin").lsp_definitions({ reuse_win = true }) end,      desc = "Goto Definition",       has = "definition" },
+    { "gd",         vim.lsp.buf.definition,      desc = "Goto Definition",       has = "definition" },
+    -- FIXME: https://github.com/nvim-telescope/telescope.nvim/issues/2768
+    -- { "gr",         "<cmd>Telescope lsp_references<cr>",                                                    desc = "References" },
+    { "gr",         vim.lsp.buf.references,      desc = "References" },
+    { "gD",         vim.lsp.buf.declaration,     desc = "Goto Declaration" },
+    -- FIXME: https://github.com/nvim-telescope/telescope.nvim/issues/2768
+    -- { "gI",         function() require("telescope.builtin").lsp_implementations({ reuse_win = true }) end,  desc = "Goto Implementation" },
+    { "gI",         vim.lsp.buf.implementation,  desc = "Goto Implementation" },
+    -- FIXME: https://github.com/nvim-telescope/telescope.nvim/issues/2768
+    -- { "gy",         function() require("telescope.builtin").lsp_type_definitions({ reuse_win = true }) end, desc = "Goto T[y]pe Definition" },
+    { "gy",         vim.lsp.buf.type_definition, desc = "Goto T[y]pe Definition" },
+    { "K",          vim.lsp.buf.hover,           desc = "Hover" },
+    { "gK",         vim.lsp.buf.signature_help,  desc = "Signature Help",        has = "signatureHelp" },
+    { "<c-k>",      vim.lsp.buf.signature_help,  mode = "i",                     desc = "Signature Help", has = "signatureHelp" },
+    { "<leader>ca", vim.lsp.buf.code_action,     desc = "Code Action",           mode = { "n", "v" },     has = "codeAction" },
     {
       "<leader>cA",
       function()
