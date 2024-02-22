@@ -184,7 +184,16 @@ return {
         local is_deno = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")
         Util.lsp.disable("tsserver", is_deno)
         Util.lsp.disable("denols", function(root_dir)
-          return not is_deno(root_dir)
+          if is_deno(root_dir) then
+            -- explicitly disable tsserver if the deno root_dir is different from the tsserver root_dir
+            Util.lsp.disable("tsserver", function()
+              return true
+            end)
+
+            return false
+          else
+            return true
+          end
         end)
       end
     end,
