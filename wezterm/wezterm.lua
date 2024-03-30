@@ -3,7 +3,7 @@ local act = wezterm.action
 local config = {}
 
 -- Show which key table is active in the status area
-wezterm.on('update-right-status', function(window, pane)
+wezterm.on('update-right-status', function(window)
   local name = window:active_key_table()
   if name then
     name = 'TABLE: ' .. name
@@ -53,6 +53,12 @@ config.keys = {
       name = 'activate_pane',
       timeout_milliseconds = 1000,
     },
+  },
+
+  {
+    key = 'p',
+    mods = 'CMD',
+    action = wezterm.action.ActivateCommandPalette,
   },
 }
 
