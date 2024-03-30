@@ -359,6 +359,9 @@ return {
     },
   },
 
+  {
+    "tpope/vim-fugitive"
+  },
   -- better diagnostics list and others
   {
     "folke/trouble.nvim",
