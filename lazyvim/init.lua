@@ -25,7 +25,9 @@ require("lazy").setup({
       end
     },
     { import = "bootstrap" },
-    { import = "plugins" }
+    { import = "plugins" },
+    { import = "lazyvim.plugins.extras.editor.telescope" },
+    { import = "lazyvim.plugins.extras.editor.fzf" },
   },
   install = {
     -- install missing plugins on startup. This doesn't increase startup time.
