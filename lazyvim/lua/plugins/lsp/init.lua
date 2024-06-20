@@ -123,7 +123,7 @@ return {
           end
 
           lspconfig.lexical.setup(opts)
-        end
+        end,
       },
     },
     ---@param opts PluginLspOpts
