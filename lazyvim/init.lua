@@ -26,6 +26,7 @@ require("lazy").setup({
     },
     { import = "bootstrap" },
     { import = "plugins" },
+    { import = "lazyvim.plugins.extras.lang.tailwind" },
     { import = "lazyvim.plugins.extras.editor.telescope" },
     { import = "lazyvim.plugins.extras.editor.fzf" },
   },
