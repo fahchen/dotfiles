@@ -60,6 +60,7 @@ return {
           cmd = { "/Users/fahchen/Projects/dotfiles/lexical/_build/prod/package/lexical/bin/start_lexical.sh" },
           settings = {},
         },
+        ruby_lsp = {},
       },
       -- you can do any additional lsp server setup here
       -- return true if you don't want this server to be setup with lspconfig
