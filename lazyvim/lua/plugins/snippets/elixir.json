@@ -1,0 +1,50 @@
+{
+  "# credo:disable-for-this-file": {
+    "prefix": [
+      "#credof"
+    ],
+    "body": [
+      "# credo:disable-for-this-file $0"
+    ],
+    "description": "Disable for the entire file"
+  },
+  "# credo:disable-for-next-line": {
+    "prefix": [
+      "#credon",
+      "#credol"
+    ],
+    "body": [
+      "# credo:disable-for-next-line $0"
+    ],
+    "description": "Disable for the next line"
+  },
+  "# credo:disable-for-previous-line": {
+    "prefix": [
+      "#credop"
+    ],
+    "body": [
+      "# credo:disable-for-previous-line $0"
+    ],
+    "description": "Disable for the previous line"
+  },
+  "# credo:disable-for-lines:<count>": {
+    "prefix": [
+      "#credoc"
+    ],
+    "body": [
+      "# credo:disable-for-lines:$1 $2"
+    ],
+    "description": "Disable for the given number of lines (negative for previous lines)"
+  },
+  "Kernel.tap/2": {
+    "prefix": [
+      ">tap"
+    ],
+    "body": [
+      "|> tap(fn $1 ->",
+      "  $2",
+      "end)"
+    ],
+    "description": "Disable for the given number of lines (negative for previous lines)"
+  }
+}
