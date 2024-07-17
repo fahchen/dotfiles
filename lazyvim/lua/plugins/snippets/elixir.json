@@ -46,5 +46,18 @@
       "end)"
     ],
     "description": "Disable for the given number of lines (negative for previous lines)"
+  },
+  "Puts ast": {
+    "prefix": [
+      ">ast"
+    ],
+    "body": [
+      "|> tap(fn ast ->",
+      "  ast",
+      "  |> Macro.expand(${0:__CALLER__})",
+      "  |> Macro.to_string()",
+      "  |> IO.puts()",
+      "end)"
+    ]
   }
 }
