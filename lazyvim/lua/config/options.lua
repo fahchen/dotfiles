@@ -90,3 +90,9 @@ vim.g.markdown_recommended_style = 0
 
 -- Prepend mise shims to PATH
 vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
+
+vim.filetype.add({
+  extension = {
+    mdx = "markdown.mdx",
+  },
+})
