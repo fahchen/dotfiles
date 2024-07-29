@@ -1,10 +1,18 @@
-vim.keymap.set("n", "<c-g>", function()
+vim.keymap.set("n", "<m-g>", function()
   local file_path = vim.fn["expand"]("%:.")
   local line_number = vim.fn.line(".")
 
   print(file_path .. ":" .. line_number)
 
   vim.fn.setreg("*", file_path .. ":" .. line_number, "c")
+end)
+
+vim.keymap.set("n", "<c-g>", function()
+  local file_path = vim.fn["expand"]("%:.")
+
+  print(file_path)
+
+  vim.fn.setreg("*", file_path, "c")
 end)
 
 vim.keymap.set("n", "<c-w>z", function()
