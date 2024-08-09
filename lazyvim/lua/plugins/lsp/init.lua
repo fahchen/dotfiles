@@ -24,9 +24,18 @@ return {
               workspace = {
                 checkThirdParty = false,
               },
+              codeLens = {
+                enable = true,
+              },
               completion = {
                 callSnippet = "Replace",
               },
+              doc = {
+                privateName = { "^_" },
+              },
+              diagnostics = {
+                disable = { "missing-fields" },
+              }
             },
           },
         },
@@ -40,7 +49,7 @@ return {
         },
         rust_analyzer = {},
         tsserver = {
-          root_dir = function(filename, bufnr)
+          root_dir = function(filename)
             local denoRootDir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")(filename);
             if denoRootDir then
               -- print('this seems to be a deno project; returning nil so that tsserver does not attach');
@@ -146,11 +155,11 @@ return {
 
       local register_capability = vim.lsp.handlers["client/registerCapability"]
 
+      ---@diagnostic disable-next-line: duplicate-set-field
       vim.lsp.handlers["client/registerCapability"] = function(err, res, ctx)
         local ret = register_capability(err, res, ctx)
         local client_id = ctx.client_id
-        ---@type lsp.Client
-        local client = vim.lsp.get_client_by_id(client_id)
+        local client = assert(vim.lsp.get_client_by_id(client_id), "client not found")
         local buffer = vim.api.nvim_get_current_buf()
         require("plugins.lsp.keymaps").on_attach(client, buffer)
         return ret
