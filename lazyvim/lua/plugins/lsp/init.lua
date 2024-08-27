@@ -54,6 +54,17 @@ return {
             -- helps eslint find the eslintrc when it's placed in a subfolder instead of the cwd root
             workingDirectory = { mode = "auto" },
           },
+          root_dir = function(filename)
+            local denoRootDir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")(filename);
+            if denoRootDir then
+              -- print('this seems to be a deno project; returning nil so that tsserver does not attach');
+              return nil;
+              -- else
+              -- print('this seems to be a ts project; return root dir based on package.json')
+            end
+
+            return require("lspconfig.util").root_pattern("package.json")(filename);
+          end,
         },
         rust_analyzer = {},
         tsserver = {
