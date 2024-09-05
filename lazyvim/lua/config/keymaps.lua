@@ -26,7 +26,7 @@ vim.keymap.set("n", "<c-w>z", function()
   -- 初始化最长长度
   local max_width = vim.api.nvim_win_get_width(0)
 
-  local number_width = 6
+  local number_width = 10
 
   -- 遍历每一行
   for _, line in ipairs(lines) do
