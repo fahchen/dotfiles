@@ -57,7 +57,7 @@ return {
           root_dir = function(filename)
             local denoRootDir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")(filename);
             if denoRootDir then
-              -- print('this seems to be a deno project; returning nil so that tsserver does not attach');
+              -- print('this seems to be a deno project; returning nil so that ts_ls does not attach');
               return nil;
               -- else
               -- print('this seems to be a ts project; return root dir based on package.json')
@@ -67,11 +67,11 @@ return {
           end,
         },
         rust_analyzer = {},
-        tsserver = {
+        ts_ls = {
           root_dir = function(filename)
             local denoRootDir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")(filename);
             if denoRootDir then
-              -- print('this seems to be a deno project; returning nil so that tsserver does not attach');
+              -- print('this seems to be a deno project; returning nil so that ts_ls does not attach');
               return nil;
               -- else
               -- print('this seems to be a ts project; return root dir based on package.json')
@@ -97,7 +97,7 @@ return {
       ---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
       setup = {
         -- example to setup with typescript.nvim
-        -- tsserver = function(_, opts)
+        -- ts_ls = function(_, opts)
         --   require("typescript").setup({ server = opts })
         --   return true
         -- end,
@@ -224,14 +224,14 @@ return {
         end
       end
 
-      if Util.lsp.get_config("denols") and Util.lsp.get_config("tsserver") then
+      if Util.lsp.get_config("denols") and Util.lsp.get_config("ts_ls") then
         local is_deno = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")
-        Util.lsp.disable("tsserver", is_deno)
+        Util.lsp.disable("ts_ls", is_deno)
         Util.lsp.disable("eslint", is_deno)
         Util.lsp.disable("denols", function(root_dir)
           if is_deno(root_dir) then
-            -- explicitly disable tsserver and eslint if the deno root_dir is different from the tsserver root_dir
-            Util.lsp.disable("tsserver", function()
+            -- explicitly disable ts_ls and eslint if the deno root_dir is different from the ts_ls root_dir
+            Util.lsp.disable("ts_ls", function()
               return true
             end)
             Util.lsp.disable("eslint", function()
