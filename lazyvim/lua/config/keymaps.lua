@@ -74,3 +74,6 @@ end, { desc = "Format" })
 
 -- quit
 vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
+
+-- sort lines
+vim.api.nvim_set_keymap('v', '<C-o>', ':sort<CR>', { noremap = true, silent = true })
