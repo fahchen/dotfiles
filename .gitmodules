@@ -1,3 +1,0 @@
-[submodule "elixir/lexical"]
-	path = elixir/lexical
-	url = https://github.com/lexical-lsp/lexical
