@@ -165,6 +165,10 @@ return {
   {
     "stevearc/conform.nvim",
     opts = {
+      notify_on_error = true,
+      default_format_opts = {
+        stop_after_first = true,
+      },
       formatters_by_ft = {
         sql = {
           "sql_formatter",
@@ -174,7 +178,7 @@ return {
         sql_formatter = {
           args = {
             "-l",
-            "plsql",
+            "postgresql",
           },
         },
       },
