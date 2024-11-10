@@ -40,4 +40,4 @@ vim.keymap.set("n", "<c-w>z", function()
 end)
 
 -- sort lines
-vim.api.nvim_set_keymap('v', '<C-o>', ':sort<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<C-o>", ":sort<CR>", { noremap = true, silent = true })

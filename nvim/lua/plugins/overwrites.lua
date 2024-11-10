@@ -136,10 +136,35 @@ return {
     end,
   },
   {
-    "rcarriga/nvim-notify",
+    "nvim-neo-tree/neo-tree.nvim",
     opts = {
-      render = "compact",
-      top_down = false,
+      filesystem = {
+        filtered_items = {
+          always_show = {
+            ".server",
+            ".client",
+            ".gitignore",
+          },
+          always_show_by_pattern = {
+            ".env*",
+          },
+        },
+      },
+    },
+  },
+  {
+    "folke/snacks.nvim",
+    ---@type snacks.config
+    opts = {
+      notifier = {
+        style = "minimal",
+        top_down = false,
+      },
+      terminal = {
+        win = {
+          position = "bottom",
+        },
+      },
     },
   },
   {
@@ -172,6 +197,12 @@ return {
       formatters_by_ft = {
         sql = {
           "sql_formatter",
+        },
+        typescriptreact = {
+          "biome",
+        },
+        typescript = {
+          "biome",
         },
       },
       formatters = {
