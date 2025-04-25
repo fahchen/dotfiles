@@ -15,3 +15,8 @@ vim.keymap.del("n", "<leader>gL")
 map("n", "<leader>gz", function()
   Snacks.lazygit()
 end, { desc = "Lazygit (cwd)" })
+
+-- terminal
+map("n", "<c-/>", function()
+  Snacks.terminal()
+end, { desc = "Terminal (cwd)" })
