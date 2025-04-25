@@ -24,6 +24,7 @@ end)
 config.color_scheme = scheme_for_appearance(wezterm.gui.get_appearance())
 
 config.font = wezterm.font_with_fallback({
+	"Maple Mono NF CN",
 	"JetBrains Mono",
 	"Terminus",
 	"Noto Color Emoji",
