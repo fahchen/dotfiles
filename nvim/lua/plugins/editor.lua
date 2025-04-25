@@ -41,6 +41,7 @@ return {
     end,
   },
   { "tpope/vim-fugitive", lazy = true },
+  { "rafcamlet/nvim-luapad", lazy = true },
   {
     "mistricky/codesnap.nvim",
     build = "make",
