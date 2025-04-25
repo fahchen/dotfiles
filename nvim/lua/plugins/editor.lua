@@ -8,10 +8,26 @@ return {
       {
         "<leader>gl",
         function()
-          vim.api.nvim_exec2("GH", {})
-          print("GitHub line copied to clipboard")
+          local mode = vim.fn.mode()
+          print(mode)
+          if mode == "v" or mode == "V" or mode == "" then
+            local start_line = vim.fn.line("v")
+            local end_line = vim.fn.line(".")
+
+            if start_line > end_line then
+              start_line, end_line = end_line, start_line
+            end
+
+            print(string.format("%d,%dGH", start_line, end_line))
+            vim.api.nvim_exec2(string.format("%d,%dGH", start_line, end_line), {})
+            print(string.format("GitHub %d-%d line copied to clipboard", start_line, end_line))
+          else
+            -- Call GH command for the current line in normal mode
+            vim.api.nvim_exec2("GH", {})
+            print("GitHub line copied to clipboard")
+          end
         end,
-        mode = { "n" },
+        mode = { "n", "v", "x" },
         silent = true,
         desc = "Open GitHub line",
       },
