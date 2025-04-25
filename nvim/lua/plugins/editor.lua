@@ -41,4 +41,28 @@ return {
     end,
   },
   { "tpope/vim-fugitive", lazy = true },
+  {
+    "mistricky/codesnap.nvim",
+    build = "make",
+    keys = {
+      { "<leader>tc", "<cmd>CodeSnapHighlight<cr>", mode = "x", desc = "Save selected code snapshot into clipboard" },
+      {
+        "<leader>ts",
+        "<cmd>CodeSnapSaveHighlight<cr>",
+        mode = "x",
+        desc = "Save selected code snapshot in ~/Screenshots",
+      },
+    },
+    opts = {
+      save_path = "~/Screenshots/",
+      has_breadcrumbs = true,
+      show_workspace = true,
+      has_line_number = true,
+      code_font_family = "Maple Mono NF CN",
+      watermark_font_family = "Maple Mono NF CN",
+      watermark = "@Phil Chen",
+      bg_theme = "bamboo",
+      bg_color = "#535c68",
+    },
+  },
 }
