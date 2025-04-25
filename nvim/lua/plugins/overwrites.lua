@@ -162,7 +162,7 @@ return {
       },
       terminal = {
         win = {
-          position = "bottom",
+          position = "float",
         },
       },
     },
